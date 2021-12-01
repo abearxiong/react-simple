@@ -1,4 +1,5 @@
 // @ts-check
+// @ts-ignore
 const pkgs = require('./package.json');
 
 const path = require('path');

@@ -23,9 +23,8 @@
   "exclude": [
     "**css.d.ts",
     "**.html",
-    "webpack.config.ts",
+    "webpack.config.js",
     "config/**/*",
-    "bin/**/*",
-    "lib/**/*"
+    "bin/**/*"
   ]
 }
