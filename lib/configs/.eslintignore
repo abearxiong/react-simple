@@ -11,5 +11,3 @@ src/@types/**
 .eslintrc.js
 webpack.config.ts
 tsconfig.json
-
-2222

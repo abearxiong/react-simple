@@ -1,21 +1,10 @@
-// @ts-check
-// @ts-ignore
-const pkgs = require('./package.json');
-
 const path = require('path');
-const join = path.join;
-
+const pkgs = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const ESLintPlugin = require('eslint-webpack-plugin');
-const WebpackBuildNotifierPlugin = require('webpack-build-notifier');
-
-const ForkTsCheckerWebpackPlugin = require('fork-ts-checker-webpack-plugin');
-const { merge } = require('webpack-merge');
-const webpack = require('webpack');
 
 const WEBPACK_SERVE = process.env.WEBPACK_SERVE;
-const WEBPACK_DEV_TYPE = process.env.WEBPACK_DEV_TYPE;
-const mode = WEBPACK_SERVE ? 'development' : 'prodution';
+const join = path.join;
+const mode = WEBPACK_SERVE ? 'development' : 'production';
 
 const common = {
   target: 'web',
@@ -83,29 +72,7 @@ const common = {
       cache: true,
       version: pkgs.version,
     }),
-    new ForkTsCheckerWebpackPlugin({
-      async: true,
-      eslint: {
-        enabled: true,
-        files: './src/**/*.{ts,tsx}',
-      },
-    }),
-    // @ts-ignore
-    new ESLintPlugin({
-      fix: true,
-    }),
-    // @ts-ignore
-    new WebpackBuildNotifierPlugin({
-      title: pkgs.name,
-      suppressSuccess: true,
-    }),
-
-    new webpack.DefinePlugin({
-      WEBPACK_SERVE: JSON.stringify(WEBPACK_SERVE),
-      WEBPACK_DEV_TYPE: JSON.stringify(WEBPACK_DEV_TYPE),
-      APP_NAME: JSON.stringify(pkgs.name.split('/')[1]),
-    }),
   ],
 };
 
-module.exports = merge(common)
+module.exports = common
