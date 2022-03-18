@@ -1,11 +1,12 @@
+
 const path = require('path');
 const pkgs = require('./package.json');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-
 const WEBPACK_SERVE = process.env.WEBPACK_SERVE;
 const join = path.join;
 const mode = WEBPACK_SERVE ? 'development' : 'production';
 
+/** @type {import('webpack').Configuration} */
 const common = {
   target: 'web',
   mode: mode,
@@ -14,7 +15,7 @@ const common = {
     runtimeChunk: 'single'
   },
   output: {
-    publicPath: `/`,
+    publicPath: `/`
   },
   devServer: {
     static: {

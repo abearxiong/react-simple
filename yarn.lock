@@ -1576,8 +1576,8 @@
 
 "@types/webpack@^5.28.0":
   version "5.28.0"
-  resolved "https://registry.npmmirror.com/@types/webpack/download/@types/webpack-5.28.0.tgz#78dde06212f038d77e54116cfe69e88ae9ed2c03"
-  integrity sha1-eN3gYhLwONd+VBFs/mnoiuntLAM=
+  resolved "https://registry.npmmirror.com/@types/webpack/-/webpack-5.28.0.tgz#78dde06212f038d77e54116cfe69e88ae9ed2c03"
+  integrity sha512-8cP0CzcxUiFuA9xGJkfeVpqmWTk9nx6CWwamRGCj95ph1SmlRRk9KlCZ6avhCbZd4L68LvYT6l1kpdEnQXrF8w==
   dependencies:
     "@types/node" "*"
     tapable "^2.2.0"
@@ -2293,11 +2293,6 @@ babel-preset-jest@^27.4.0:
   dependencies:
     babel-plugin-jest-hoist "^27.4.0"
     babel-preset-current-node-syntax "^1.0.0"
-
-babel@^6.23.0:
-  version "6.23.0"
-  resolved "https://repo.huaweicloud.com/repository/npm/babel/-/babel-6.23.0.tgz#d0d1e7d803e974765beea3232d4e153c0efb90f4"
-  integrity sha1-0NHn2APpdHZb7qMjLU4VPA77kPQ=
 
 balanced-match@^1.0.0:
   version "1.0.2"
