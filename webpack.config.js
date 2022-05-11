@@ -4,7 +4,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 const WEBPACK_SERVE = process.env.WEBPACK_SERVE;
 const join = path.join;
-const mode = WEBPACK_SERVE ? 'development' : 'prodution';
+const mode = WEBPACK_SERVE ? 'development' : 'production';
 
 const common = {
   target: 'web',
