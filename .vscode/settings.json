@@ -1,0 +1,25 @@
+// -*- jsonc -*-
+{
+  "editor.codeActionsOnSave": {
+    "source.fixAll": true
+  },
+  "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"], // for css modules
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  // "editor.formatOnSave": true,
+  "eslint.options": {
+    "reportUnusedDisableDirectives": "warn"
+  },
+  "files.eol": "\n",
+  "files.insertFinalNewline": true,
+  "files.trimFinalNewlines": true,
+  "files.trimTrailingWhitespace": true,
+  "prettier.prettierPath": "./node_modules/prettier",
+  "terminal.integrated.defaultProfile.windows": "Git Bash",
+  "search.exclude": {
+    "**/*.code-search": true,
+    "**/bower_components": true,
+    "**/node_modules": true,
+    ".yarn/**": true,
+    "yarn.lock": true
+  }
+}

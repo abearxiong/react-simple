@@ -1,0 +1,15 @@
+build/**
+config/**
+dist/**
+bin/**
+lib/**
+dll/**
+node_modules/**
+*.config.js
+test/**
+src/@types/**
+.eslintrc.js
+webpack.config.ts
+tsconfig.json
+
+2222

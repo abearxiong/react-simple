@@ -1,0 +1,13 @@
+diff --git a/node_modules/webpack/types.d.ts b/node_modules/webpack/types.d.ts
+index 44cd3b9..58335de 100644
+--- a/node_modules/webpack/types.d.ts
++++ b/node_modules/webpack/types.d.ts
+@@ -6954,7 +6954,7 @@ declare class ModuleFederationPlugin {
+ 	 */
+ 	apply(compiler: Compiler): void;
+ }
+-declare interface ModuleFederationPluginOptions {
++export declare interface ModuleFederationPluginOptions {
+ 	/**
+ 	 * Modules that should be exposed by this container. When provided, property name is used as public name, otherwise public name is automatically inferred from request.
+ 	 */

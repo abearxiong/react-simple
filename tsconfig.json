@@ -1,10 +1,10 @@
 {
   "compilerOptions": {
     "target": "esnext",
-    "module": "esnext",
+    "module": "commonjs",
     "allowUnreachableCode": true,
     "importHelpers": true,
-    "jsx": "react",
+    "jsx": "react-jsx",
     "noImplicitAny": false,
     "esModuleInterop": true,
     "sourceMap": true,
@@ -12,14 +12,16 @@
     "strict": true,
     "typeRoots": ["node_modules/@types"],
     "paths": {
-      "@/api": ["src/context/api/index"],
       "@/*": ["src/*"],
       "*": ["types/*"]
     },
     "allowSyntheticDefaultImports": true,
     "experimentalDecorators": true,
-    "allowJs": true
+    "allowJs": true,
+    "resolveJsonModule": true,
+    "moduleResolution": "node",
+    "plugins": [{ "name": "typescript-plugin-css-modules" }]
   },
   "include": ["src/**/*", "typings.d.ts", "test/**/*"],
-  "exclude": ["**css.d.ts", "**.html", "webpack.config.ts","config/**/*" ],
+  "exclude": ["**.html", "webpack.config.ts", "config/**/*"]
 }
