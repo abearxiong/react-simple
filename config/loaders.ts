@@ -25,19 +25,20 @@ export const sassLoader = (config: WebpackConfiguration) => {
           modules: true, // 此处设置为false可禁用局部CSS
         },
       },
-      {
-        loader: 'postcss-loader',
-        options: {
-          postcssOptions: {
-            plugins: () => {
-              return ['postcss-preset-env'];
-            },
-          },
-        },
-      },
+      // {
+      //   loader: 'postcss-loader',
+      //   options: {
+      //     postcssOptions: {
+      //       plugins: () => {
+      //         return ['postcss-preset-env', 'postcss-nesting', 'tailwindcss/nesting', 'tailwindcss', 'autoprefixer'];
+      //       },
+      //     },
+      //   },
+      // },
       'sass-loader',
     ],
   };
+
   if (!config.module) {
     config.module = {
       rules: [],

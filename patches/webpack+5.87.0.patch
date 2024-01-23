@@ -1,0 +1,14 @@
+diff --git a/node_modules/webpack/types.d.ts b/node_modules/webpack/types.d.ts
+index 849b152..d81a0d3 100644
+--- a/node_modules/webpack/types.d.ts
++++ b/node_modules/webpack/types.d.ts
+@@ -13806,7 +13806,8 @@ declare namespace exports {
+ 		export {
+ 			ContainerPlugin,
+ 			ContainerReferencePlugin,
+-			ModuleFederationPlugin
++			ModuleFederationPlugin,
++      ModuleFederationPluginOptions
+ 		};
+ 	}
+ 	export namespace sharing {

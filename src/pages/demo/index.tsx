@@ -12,7 +12,7 @@ const Demo = () => {
   };
   return (
     <div>
-      <div>demo==={t('nisar')}</div>
+      <div>demo==={t('demo')}</div>
       <Button type='primary' onClick={changeLanguage}>
         Button
       </Button>

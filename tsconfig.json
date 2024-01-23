@@ -16,6 +16,9 @@
       "*": ["types/*"]
     },
     "allowSyntheticDefaultImports": true,
+    "allowImportingTsExtensions": true, // 允许导入ts扩展
+    "noEmit": true,
+    "newLine": "LF",
     "experimentalDecorators": true,
     "allowJs": true,
     "resolveJsonModule": true,

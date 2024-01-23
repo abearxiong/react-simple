@@ -11,6 +11,7 @@ import { addDevServer } from './config/dev-server';
 import { sassLoader, sassPlugin, WebpackConfiguration } from './config';
 import MiniCssExtractPlugin from 'mini-css-extract-plugin';
 import * as webpack from 'webpack';
+import { ProxyConfigMap } from 'webpack-dev-server';
 
 const config: WebpackConfiguration = {
   target: 'web',
@@ -21,7 +22,7 @@ const config: WebpackConfiguration = {
   },
   devtool: isDev ? 'eval-cheap-module-source-map' : 'source-map',
   output: {
-    publicPath: `auto`,
+    publicPath: `/`,
     path: path.resolve(__dirname, 'dist'),
     clean: true, // 在生成文件之前清空 output 目录
   },
@@ -51,14 +52,26 @@ const config: WebpackConfiguration = {
           {
             loader: 'css-loader',
             options: {
-              modules: true,
+              modules: false,
             },
           },
+          'postcss-loader',
+          // {
+          //   loader: 'postcss-loader',
+          //   options: {
+          //     postcssOptions: {
+          //       plugins: () => {
+          //         return ['postcss-preset-env', 'postcss-nesting', 'tailwindcss/nesting', 'tailwindcss', 'autoprefixer'];
+          //       },
+          //     },
+          //   },
+          // },
         ],
       },
       {
         test: /\.[jt]sx?$/,
         loader: 'esbuild-loader',
+        exclude: /node_modules\/(?!.*@abearxiong)/,
         options: {
           loader: 'tsx', // Remove this if you're not using JSX
           target: 'es2015', // Syntax to compile to (see options below for possible values)
@@ -69,16 +82,20 @@ const config: WebpackConfiguration = {
   },
   plugins: [
     new webpack.DefinePlugin({
-      WEBPACK_SERVE: JSON.stringify(isDev),
+      DEV_SERVER: JSON.stringify(isDev),
+      DEV_TIME: JSON.stringify(new Date().toLocaleString()),
     }),
     new webpack.ProgressPlugin(),
   ],
 };
 
-const proxy = {
+const proxy: ProxyConfigMap = {
   '/api': {
-    target: 'http://localhost:8120',
+    target: 'https://test.ai/',
     pathRewrite: { '^/api': '/api' },
+    ws: true,
+    changeOrigin: true,
+    logLevel: 'debug',
   },
 };
 addDevServer(config, { proxy });
@@ -86,7 +103,7 @@ addDevServer(config, { proxy });
 sassLoader(config);
 sassPlugin(config);
 
-addPlugin(config, htmlPlugin({ version: pkgs.version }));
+addPlugin(config, htmlPlugin({ version: pkgs.version, title: 'Simple Demo' }));
 sassPlugin(config);
 tsCheckPlugin(config);
 eslintPlugin(config);

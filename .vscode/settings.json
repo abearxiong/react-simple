@@ -1,7 +1,7 @@
 // -*- jsonc -*-
 {
   "editor.codeActionsOnSave": {
-    "source.fixAll": true
+    "source.fixAll": "explicit"
   },
   "typescript.tsserver.pluginPaths": ["typescript-plugin-css-modules"], // for css modules
   "editor.defaultFormatter": "esbenp.prettier-vscode",

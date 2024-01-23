@@ -8,8 +8,8 @@ import * as pkgs from '../package.json';
 
 import { checkDev } from './dev-server';
 import { WebpackConfiguration } from './type';
-import { ModuleFederationPluginOptions } from 'webpack';
 const { ModuleFederationPlugin } = webpack.container;
+type ModuleFederationPluginOptions = webpack.container.ModuleFederationPluginOptions; // to fix webpack export is not ok
 /**
  * add plugin to webpack config
  * @param config
@@ -28,6 +28,7 @@ export const addPlugin = (config: Webpack.Configuration, plugin: any) => {
  * @returns
  */
 export const htmlPlugin = (options?: HtmlWebpackPlugin.Options) => {
+  const { title = 'demo', buildTime = new Date().toUTCString(), version, ...rest } = options || {};
   return new HtmlWebpackPlugin({
     templateContent: `
     <!DOCTYPE html>
@@ -37,14 +38,20 @@ export const htmlPlugin = (options?: HtmlWebpackPlugin.Options) => {
       <meta name="viewport" content="width=device-width,initial-scale=1.0" />
       <meta name="viewport" content="viewport-fit=cover" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <title>demo</title>
+      <title>${title}</title>
     </head>
     <body>
       <noscript> You need to enable JavaScript to run this app. </noscript>
       <div id="root"></div>
+      <div style="display:none">
+        ${version} <br />
+        ${buildTime}
+      </div>
     </body>
     </html>
 `,
+    title: 'demo',
+    buildTime: new Date().toUTCString(),
     cache: true,
     ...options,
   });
@@ -59,7 +66,7 @@ export const htmlPlugin = (options?: HtmlWebpackPlugin.Options) => {
 export const analyzerPlugin = (config: Webpack.Configuration, options?: BundleAnalyzerPlugin.Options) => {
   if (checkDev()) return config;
   config.plugins = config.plugins || [];
-  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', ...options }));
+  config.plugins.push(new BundleAnalyzerPlugin({ analyzerMode: 'static', ...options }) as any);
   return config;
 };
 /**
@@ -96,26 +103,28 @@ export const eslintPlugin = (config: WebpackConfiguration) => {
   return config;
 };
 
-export const federationPlugin = (config: WebpackConfiguration, options?:  ModuleFederationPluginOptions) => {
+export const federationPlugin = (config: WebpackConfiguration, options?: ModuleFederationPluginOptions) => {
   config.plugins = config.plugins || [];
-  const {remotes,exposes,shared,...rest} = options || {};
-  config.plugins.push(new ModuleFederationPlugin({
-    name: pkgs?.name?.split?.('/')?.[1] || 'app',
-    filename: 'remoteEntry.js',
-    remotes,
-    exposes,
-    shared: {
-      react: {
-        eager: true, // 共享依赖是否被打包进入main，remoteEntry当中
-        singleton: true, // 是否开启单例模式，默认为false，开启后remote组建和host应用共享同一个react实例，只加载一次。
+  const { remotes, exposes, shared, ...rest } = options || {};
+  config.plugins.push(
+    new ModuleFederationPlugin({
+      name: pkgs?.name?.split?.('/')?.[1] || 'app',
+      filename: 'remoteEntry.js',
+      remotes,
+      exposes,
+      shared: {
+        react: {
+          eager: true, // 共享依赖是否被打包进入main，remoteEntry当中
+          singleton: true, // 是否开启单例模式，默认为false，开启后remote组建和host应用共享同一个react实例，只加载一次。
+        },
+        'react-dom': {
+          eager: true,
+        },
+        ...shared,
       },
-      'react-dom': {
-        eager: true,
-      },
-      ...shared
-    },
-    // other options like shared
-    ...rest
-  }));
+      // other options like shared
+      ...rest,
+    }),
+  );
   return config;
-}
+};

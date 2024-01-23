@@ -1,4 +1,4 @@
 // Generic global translation
 export default {
-  nisar: 'Nisar2233',
+  demo: 'demo2233',
 };

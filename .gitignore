@@ -10,3 +10,11 @@ dist
 public/apps/**/*
 
 public/*.worker.js*
+
+deploy/**.tar.gz
+deploy.tar.gz
+
+apps/*
+!apps/readme.md
+!apps/Dockerfile
+!apps/apps.conf

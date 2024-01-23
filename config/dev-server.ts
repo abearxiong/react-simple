@@ -46,3 +46,10 @@ export const checkDev = () => {
   const isDev = mode === 'development';
   return isDev;
 };
+
+export const getCommit = () => {
+  if (checkDev()) return '';
+  const child_process = require('child_process');
+  const res = child_process.execSync('git rev-parse --short HEAD');
+  return res.toString();
+};
